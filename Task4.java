@@ -1,10 +1,6 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Date;
-import java.util.Scanner;
+// Task 4 making a online exam portal using java
+import java.io.*;
+import java.util.*;
 
 class Candidate {
     String name;
@@ -27,9 +23,12 @@ class Candidate {
         System.out.println("Set password ");
         password = sc.nextLine();
         System.out.println("Your registration is successfully completed, Your test id is " + test_id++);
+        System.out.println("Press Enter to continue...");
+        sc.nextLine(); // Wait for user to press Enter
     }
+    
 
-    void update_profile() {
+    void update_profile() {// update profile section
         Scanner sc = new Scanner(System.in);
         System.out.println("-------UPDATE PROFILE-------");
         System.out.println("For update \n 1 > Name \n 2 > Roll Number \n 3 > Password");
@@ -96,8 +95,8 @@ class Portal {
                         String option = br.readLine();
                         System.out.println(option);
                     }
-                    System.out.println("Ans: ");
-                    String input = sc.nextLine();
+                    System.out.println("Enter your answer (A, B, C, or D): ");
+                    String input = sc.nextLine().trim().toUpperCase();
                     String ans_fileName = "answer_user_" + user.tst_id + ".txt";
                     try (BufferedWriter bw = new BufferedWriter(new FileWriter(ans_fileName, true))) {
                         bw.write(input);
@@ -118,23 +117,53 @@ class Portal {
         }
         evaluate_marks(user);
     }
+    
 
     void evaluate_marks(Candidate user) {
-        String fileName = "answer_user_" + user.tst_id + ".txt";
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName));
-             BufferedReader br2 = new BufferedReader(new FileReader("answers.txt"))) {
-            String answer_line, user_answer;
-            while ((answer_line = br2.readLine()) != null && (user_answer = br.readLine()) != null) {
-                if (user_answer.equalsIgnoreCase(answer_line)) {
+        String userAnswersFile = "answer_user_" + user.tst_id + ".txt";
+        String correctAnswersFile = "answers.txt";
+    
+        try (BufferedReader brUser = new BufferedReader(new FileReader(userAnswersFile));
+             BufferedReader brCorrect = new BufferedReader(new FileReader(correctAnswersFile))) {
+    
+            String userAnswer, correctAnswer;
+            int questionNumber = 1;
+    
+            while ((userAnswer = brUser.readLine()) != null && (correctAnswer = brCorrect.readLine()) != null) {
+                // Debug output
+                System.out.println("User Answer: " + userAnswer);
+                System.out.println("Correct Answer: " + correctAnswer);
+    
+                // Extract the actual answer from the format Qx. "Answer"
+                String[] correctAnswerParts = correctAnswer.split("\"");
+                if (correctAnswerParts.length < 2) {
+                    System.err.println("Error in format of correct answers file at line: " + correctAnswer);
+                    continue;
+                }
+                correctAnswer = correctAnswerParts[1].trim().toUpperCase();
+    
+                // User answer is directly read and standardized
+                userAnswer = userAnswer.trim().replace("\"", "").toUpperCase();
+    
+                System.out.println("Question " + questionNumber + ":");
+                System.out.println("User Answer: " + userAnswer);
+                System.out.println("Correct Answer: " + correctAnswer);
+    
+                if (userAnswer.equalsIgnoreCase(correctAnswer)) {
                     user.obtained_marks += 1;
                     user.correct++;
+                    System.out.println("Result: Correct");
                 } else {
                     user.incorrect++;
+                    System.out.println("Result: Incorrect");
                 }
+    
+                questionNumber++;
             }
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }
+    
         System.out.println("\n\nThe obtained Marks are: " + user.obtained_marks);
         System.out.println("The number of correct answers is: " + user.correct);
         System.out.println("The number of incorrect answers is: " + user.incorrect);
@@ -143,9 +172,9 @@ class Portal {
         sc.nextLine();
         System.out.println("Logging Out");
     }
+    
 }
-
-public class Task4 {
+public class Task4 {// main class
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Number of candidates you want to register: ");
@@ -192,3 +221,5 @@ public class Task4 {
         sc.close();
     }
 }
+// it was little bit hard for me as a fresher so i did take el from some websites and also from the some videos and i maked it
+// ThankYou
