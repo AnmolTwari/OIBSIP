@@ -1,0 +1,60 @@
+Q1. Which of the following is not a Java features?
+A. Dynamic
+B. Architecture Neutral
+C. Use of pointers
+D. Object-oriented
+
+Q2. Which of the following is a valid declaration of a char?
+A. char ch = '\utea';
+B. char ca = 'tea';
+C. char cr = \u0223;
+D. char cc = '\itea';
+
+Q3. Which of these is returned by the operator '&'?
+A. Integer
+B. Character
+C. Boolean
+D. Float
+
+Q4. Which of these keywords is used to prevent content of a variable from being modified?
+A. static
+B. constant
+C. final
+D. abstract
+
+Q5. Which method must be implemented by all threads?
+A. wait()
+B. start()
+C. stop()
+D. run()
+
+Q6. Which of the following is a marker interface?
+A. Serializable
+B. Comparable
+C. Cloneable
+D. Both A and C
+
+Q7. Which package contains the Random class?
+A. java.util package
+B. java.lang package
+C. java.io package
+D. java.net package
+
+Q8. What is the default value of a local variable?
+A. null
+B. 0
+C. Depends on the data type
+D. No default value for local variables
+
+Q9. Which of these exceptions will be thrown if we try to access the index of an array beyond its length?
+A. NullPointerException
+B. ArrayIndexOutOfBoundsException
+C. StringIndexOutOfBoundsException
+D. ArithmeticException
+
+Q10. Which of the following is not a wrapper class?
+A. Byte
+B. Short
+C. Integer
+D. Character
+E. String

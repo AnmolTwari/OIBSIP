@@ -1,0 +1,45 @@
+1
+2
+5
+1
+1
+cd "c:\WorkThings\Oasis\" ; if ($?) { javac Task4.java } ; if ($?) { java Task4 }
+
+
+
+
+
+cd "c:\WorkThings\Oasis\" ; if ($?) { javac Task4.java } ; if ($?) { java Task4 }
+cd "c:\WorkThings\Oasis\" ; if ($?) { javac Task4.java } ; if ($?) { java Task4 }
+A
+B
+A
+A
+A
+A
+C
+C
+B
+A
+
+C
+c
+a
+
+c
+c
+d
+d
+d
+d
+d
+e
+e
+c
+a
+
+c
+
+c
+d
+a
